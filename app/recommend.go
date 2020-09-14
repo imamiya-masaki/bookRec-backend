@@ -3,6 +3,7 @@ package main
 import (
 	"app/database"
 	"app/models"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +24,9 @@ func main() {
 }
 
 func getRecommends(c *gin.Context) {
-	recommends := models.GetMyRecommend(database.GetDB())
+	param := c.Query("sender_id")
+	id, _ := strconv.Atoi(param)
+	recommends := models.GetMyRecommend(database.GetDB(), id)
 
 	c.JSON(200, recommends)
 }

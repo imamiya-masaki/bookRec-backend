@@ -18,13 +18,9 @@ func (recommend *Recommend) SendReccomend(db *gorm.DB) {
 	}
 }
 
-func GetMyRecommend(db *gorm.DB) []Recommend {
+func GetMyRecommend(db *gorm.DB, id int) []Recommend {
 	var recommends []Recommend
-	// result := db.Where("name = ? AND age >= ?", "jinzhu", "22").Find(&recommends)
-	result := db.Find(&recommends)
-	if err := result.Error; err != nil {
-		println(err)
-	}
+	db.Where(map[string]interface{}{"sender_id": id}).Find(&recommends)
 
 	return recommends
 }
