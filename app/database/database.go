@@ -1,7 +1,7 @@
 package database
 
 import (
-	"fmt"
+	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -14,9 +14,9 @@ var err error
 
 // Init initializes database
 func Init() {
-	err := godotenv.Load(fmt.Sprintf("../.env", os.Getenv("GO_ENV")))
+	err := godotenv.Load("../.env")
 	if err != nil {
-		println(err)
+		log.Fatal("Error loading .env file")
 	}
 
 	DATABASE := os.Getenv("DATABASE")
