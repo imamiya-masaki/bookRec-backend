@@ -9,7 +9,7 @@ CREATE TABLE recommends (
     sender_id INT,
     receiver_id INT,
     book_id INT,
-    reaction_contentId INT
+    reaction_content_id INT
 );
 
 CREATE TABLE messages (
@@ -38,7 +38,7 @@ CREATE TABLE bookGroup (
 
 CREATE TABLE books (
     id INT auto_increment not null primary key,
-    bookGroup_id INT,
+    book_group_id INT,
     title VARCHAR(64),
     author VARCHAR(64),
     price INT,
