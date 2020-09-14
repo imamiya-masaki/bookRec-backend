@@ -20,6 +20,9 @@ func main() {
 	r.GET("/book/:id", apiGetBook)
 	r.GET("/book", apiGetAllBook)
 	r.GET("/book/:id/Content", apiGetContent)
+	r.GET("/users/:id", func(c *gin.Context) {
+		getUserData(c, c.Param("id"))
+	})
 	r.Run()
 }
 func getAllPost(c *gin.Context) {
@@ -46,4 +49,12 @@ func createPost(c *gin.Context) {
 	// }
 
 	c.JSON(200, post)
+}
+func getUserData(c *gin.Context, id string) {
+	println("getting userdata")
+	var i int
+	i, _ = strconv.Atoi(id)
+	data := models.GetUserDataById(database.GetDB(), i)
+	enc, _ := json.Marshal(data)
+	c.JSON(200, string(enc))
 }
