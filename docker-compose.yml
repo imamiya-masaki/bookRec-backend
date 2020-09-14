@@ -34,3 +34,4 @@ services:
         # command: fresh
         # command: realize start --run --no-config
         command: go run main.go
+        # command: go run recommend.go
