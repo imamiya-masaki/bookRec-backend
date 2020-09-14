@@ -1,22 +1,32 @@
-# 起動
+## 起動
+### .envファイル作成
+ルートディレクトリで.envファイルを以下の内容で作成（変数の値は各自の環境に合わせてください）
+```
+DATABASE=book_db
+USERNAME=docker
+USERPASS=docker
+ROOTPASS=root
+```
+### コンテナの生成と起動
 ```
 $ docker-compose build
 $ docker-compose up -d
 ```
 
-# ログの確認
+## ログの確認
 ```
 $ docker-compose logs golang # go
 $ docker-compose logs mysql # mysql
 ```
 
-# 編集の反映
+## 編集を反映
+編集を反映したいときはコンテナを再生成してください
 ```
 $ docker-compose down
 $ docker-compose up -d
 ```
 
-# ディレクトリ構成
+## ディレクトリ構成
 - app: アプリケーションフォルダ
     - controller:
     - database: 全体的なデータベース周りの処理
