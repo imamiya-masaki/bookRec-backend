@@ -31,6 +31,4 @@ services:
         tty: true
         depends_on:
             - mysql
-        # command: fresh
-        # command: realize start --run --no-config
         command: go run main.go
