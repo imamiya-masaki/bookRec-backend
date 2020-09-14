@@ -1,34 +1,34 @@
 CREATE TABLE users (
     id INT auto_increment not null primary key,
     username VARCHAR(32),
-    twitterToken VARCHAR(256)
+    twitter_token VARCHAR(256)
 );
 
 CREATE TABLE recommends (
     id INT auto_increment not null primary key,
-    senderId INT,
-    receiverId INT,
-    bookId INT,
-    reactionContentId INT
+    sender_id INT,
+    receiver_id INT,
+    book_id INT,
+    reaction_contentId INT
 );
 
 CREATE TABLE messages (
     id INT auto_increment not null primary key,
-    reccomendId INT,
+    reccomend_id INT,
     sendedtime TIMESTAMP,
     content VARCHAR(256)
 );
 
 CREATE TABLE booklist (
     id INT auto_increment not null primary key,
-    userId INT,
-    bookId INT
+    user_id INT,
+    book_id INT
 );
 
 CREATE TABLE myBooks (
     id INT auto_increment not null primary key,
-    userId INT,
-    bookId INT
+    user_id INT,
+    book_id INT
 );
 
 CREATE TABLE bookGroup (
@@ -38,21 +38,21 @@ CREATE TABLE bookGroup (
 
 CREATE TABLE books (
     id INT auto_increment not null primary key,
-    bookGroupId INT,
+    bookGroup_id INT,
     title VARCHAR(64),
     author VARCHAR(64),
     price INT,
-    releaseDate VARCHAR(128)
+    release_date VARCHAR(128)
 );
 
 CREATE TABLE bookContents (
     id INT auto_increment not null primary key,
-    bookId INT,
-    bookPage INT,
-    URI VARCHAR(256)
+    book_id INT,
+    book_page INT,
+    uri VARCHAR(256)
 );
 CREATE TABLE reactionContent (
     id INT auto_increment not null primary key,
-    reactionName VARCHAR(64),
-    URI VARCHAR(256)
+    reaction_name VARCHAR(64),
+    uri VARCHAR(256)
 );
