@@ -15,7 +15,7 @@ services:
             # 初期化よう
             - ./docker/db/db_init:/docker-entrypoint-initdb.d
             # 永続化よう
-            - ./docker/db/db_data:/var/lib/mysql
+            # - ./docker/db/db_data:/var/lib/mysql
         networks:
             - default
             
