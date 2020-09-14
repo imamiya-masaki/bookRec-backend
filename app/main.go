@@ -25,6 +25,11 @@ func main() {
 	r.GET("/users/:id", func(c *gin.Context) {
 		getUserData(c, c.Param("id"))
 	})
+
+	r.POST("/recommend", sendRecommend)
+	r.GET("/my_recommend", getMyRecommend)
+	r.GET("/my_recommended", getMyRecommended)
+
 	r.Run()
 }
 func getAllPost(c *gin.Context) {
