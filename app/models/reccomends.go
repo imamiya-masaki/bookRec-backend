@@ -18,9 +18,16 @@ func (recommend *Recommend) SendReccomend(db *gorm.DB) {
 	}
 }
 
-func GetMyRecommend(db *gorm.DB, id int) []Recommend {
+func GetMyRecommend(db *gorm.DB, sender_id int) []Recommend {
 	var recommends []Recommend
-	db.Where(map[string]interface{}{"sender_id": id}).Find(&recommends)
+	db.Where(map[string]interface{}{"sender_id": sender_id}).Find(&recommends)
+
+	return recommends
+}
+
+func GetMyRecommended(db *gorm.DB, reciver_id int) []Recommend {
+	var recommends []Recommend
+	db.Where(map[string]interface{}{"reciever_id": reciver_id}).Find(&recommends)
 
 	return recommends
 }
