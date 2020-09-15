@@ -3,10 +3,6 @@ package main
 import (
 	"app/database"
 	"app/models"
-
-	"encoding/json"
-	"strconv"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,22 +18,11 @@ func main() {
 	r.GET("/book/:id", apiGetBook)
 	r.GET("/book", apiGetAllBook)
 	r.GET("/book/:id/Content", apiGetContent)
-	r.GET("/users/:id", func(c *gin.Context) {
-		getUserData(c, c.Param("id"))
-	})
+	r.GET("/users/:id", apiGetUserdata)
 
 	r.POST("/recommend", sendRecommend)
 	r.GET("/my_recommend", getMyRecommend)
 	r.GET("/my_recommended", getMyRecommended)
 
 	r.Run()
-}
-
-func getUserData(c *gin.Context, id string) {
-	println("getting userdata")
-	var i int
-	i, _ = strconv.Atoi(id)
-	data := models.GetUserDataById(database.GetDB(), i)
-	enc, _ := json.Marshal(data)
-	c.JSON(200, string(enc))
 }
