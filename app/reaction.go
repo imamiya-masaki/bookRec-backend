@@ -19,7 +19,7 @@ func sendReaction(c *gin.Context) {
 
 func getReaction(c *gin.Context) {
 	param := c.Query("id")
-	id, _ := strconv.Atoi()
+	id, _ := strconv.Atoi(param)
 	reactions := models.GetReaction(database.GetDB(), id)
 
 	c.JSON(200, reactions)
