@@ -1,24 +1,24 @@
 --dummy
 
 /* */
-insert into book_db.users (id, username, twitter_token) VALUES 
+INSERT INTO book_db.users (id, username, twitter_token) VALUES 
 ("A木　太郎", "dwwadamlkdfmwaklrakmralrma"), ("B木　太郎", "dwwadamlkdfmwaklrakmralrma"), ("C木　太郎", "dwwadamlkdfmwaklrakmralrma"), ("D木　太郎", "dwwadamlkdfmwaklrakmralrma"), ("E木　太郎", "dwwadamlkdfmwaklrakmralrma");
 
-insert into book_db.recommends (sender_id, receiver_id, book_id, reaction_content_id) VALUES
+INSERT INTO book_db.recommends (sender_id, receiver_id, book_id, reaction_content_id) VALUES
 (1,2, 1, 1),(1,3,1,1),(2,3,2,1);
-insert into book_db.messages (reccomend_id, sendedtime, content) VALUES
+INSERT INTO book_db.messages (reccomend_id, sendedtime, content) VALUES
 (1,NULL,"dada"),(2,NULL,"dada"),(3,NULL,"dada")
-insert into book_db.bookGroup (name) VALUES
+INSERT INTO book_db.bookGroup (name) VALUES
 ("毀滅のヤイバ!!"),("なると");
-insert into book_db.books (book_group_id, title, author, price, releaseDate) VALUES
+INSERT INTO book_db.books (book_group_id, title, author, price, releaseDate) VALUES
 (1,"毀滅のヤイバ！！(1)","吾峠呼世晴",3000,NULL),(1,"毀滅のヤイバ！！(2)","吾峠呼世晴",3000,NULL),(2,"なると(10)","岸本 斉史",3000,NULL)
-insert into book_db.myBooks (user_id, book_id) VALUES
+INSERT INTO book_db.myBooks (user_id, book_id) VALUES
 (1,1),(2,1),(1,2), (1,3);
-insert into book_db.booklist (user_id, book_id, list_id) VALUES
+INSERT INTO book_db.booklist (user_id, book_id, list_id) VALUES
 (1,1,1),(1,2,1),(1,3,2);
-insert into bookContents (book_id, book_page, uri) VALUES
+INSERT INTO bookContents (book_id, book_page, uri) VALUES
 (1,1,NULL),(1,2,NULL),(1,3,NULL),(1,4,NULL),(1,5,NULL),(1,6,NULL);
-insert into reactionContent (reaction_name, uri) VALUES
+INSERT INTO reactionContent (reaction_name, uri) VALUES
 (NULL,NULL);
 /*
 CREATE TABLE booklist (
