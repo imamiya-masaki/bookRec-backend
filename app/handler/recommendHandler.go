@@ -49,12 +49,14 @@ func SendRecommend(c *gin.Context) {
 // 	id, _ := strconv.Atoi(param)
 // 	recommends := models.GetMyRecommend(database.GetDB(), id)
 
-// 	var recommend_infos []RecommendInfo
-// 	for i, recommend := range recommends {
-// 		var recommend_info RecommendInfo
+// 	recommends_size = len(recommends)
 
-// 		///////////////////////////
-// 		// message model　必要やわ
-// 		///////////////////////////
-// 	}
+// 	// var recommend_infos []RecommendInfo
+// 	// for i, recommend := range recommends {
+// 	// 	var recommend_info RecommendInfo
+
+// 	// 	messages := GetMessageByRecommendId(database.GetDB(), recommend.Id)
+// 	// 	message := messages[0]
+
+// 	// }
 // }
