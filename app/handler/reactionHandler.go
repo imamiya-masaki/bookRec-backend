@@ -15,10 +15,14 @@ func SendReaction(c *gin.Context) {
 	if err != nil {
 		println(err)
 	}
+
+	reaction.SendReaction(database.GetDB())
+
+	c.JSON(200, reaction)
 }
 
 func GetReaction(c *gin.Context) {
-	param := c.Query("id")
+	param := c.Param("id")
 	id, _ := strconv.Atoi(param)
 	reactions := models.GetReaction(database.GetDB(), id)
 

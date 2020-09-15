@@ -26,8 +26,12 @@ func main() {
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
 
-	r.POST("/send_reaction", handler.SendReaction)
-	r.GET("/get_reaction", handler.GetReaction)
+	r.GET("/message/:id", handler.GetMessageById)
+	r.GET("/message_by_recommend_id", handler.GetMessageByRecommendId)
+	r.POST("/message", handler.SendMessage)
+
+	r.POST("/reaction", handler.SendReaction)
+	r.GET("/reaction/:id", handler.GetReaction)
 
 	r.Run()
 }
