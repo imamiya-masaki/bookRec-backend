@@ -26,5 +26,8 @@ func main() {
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
 
+	r.POST("/send_reaction", handler.SendReaction)
+	r.GET("/get_reaction", handler.GetReaction)
+
 	r.Run()
 }

@@ -1,4 +1,4 @@
-package main
+package handler
 
 import (
 	"strconv"
@@ -9,7 +9,7 @@ import (
 	"app/models"
 )
 
-func sendReaction(c *gin.Context) {
+func SendReaction(c *gin.Context) {
 	reaction := &models.Reaction{}
 	err := c.BindJSON(reaction)
 	if err != nil {
@@ -17,7 +17,7 @@ func sendReaction(c *gin.Context) {
 	}
 }
 
-func getReaction(c *gin.Context) {
+func GetReaction(c *gin.Context) {
 	param := c.Query("id")
 	id, _ := strconv.Atoi(param)
 	reactions := models.GetReaction(database.GetDB(), id)

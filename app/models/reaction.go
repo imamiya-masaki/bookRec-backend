@@ -20,5 +20,5 @@ func GetReaction(db *gorm.DB, id int) []Recommend {
 	var reactions []Recommend
 	db.Where(map[string]interface{}{"id": id}).Find(&reactions)
 
-	return recommends
+	return reactions
 }
