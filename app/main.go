@@ -2,7 +2,7 @@ package main
 
 import (
 	"app/database"
-	"app/models"
+
 	"github.com/gin-gonic/gin"
 )
 
