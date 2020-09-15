@@ -2,7 +2,8 @@ version: '3'
 
 services:
     mysql:
-        image: mysql:5.7
+        build:
+            context: ./docker/db
         container_name: book_db
         environment:
             MYSQL_DATABASE: ${DATABASE}
