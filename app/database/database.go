@@ -25,6 +25,7 @@ func Init() {
 
 	// dsn := "docker:docker@tcp(mysql:3306)/book_db?charset=utf8mb4&parseTime=True&loc=Local"
 	dsn := USERNAME + ":" + USERPASS + "@tcp(mysql:3306)/" + DATABASE + "?charset=utf8mb4&parseTime=True&loc=Local"
+	println("dsn", dsn)
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		println(err)
