@@ -31,4 +31,4 @@ services:
         tty: true
         depends_on:
             - mysql
-        command: go run main.go book.go recommend.go
+        command: go run main.go

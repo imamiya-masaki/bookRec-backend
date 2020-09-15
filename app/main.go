@@ -2,7 +2,8 @@ package main
 
 import (
 	"app/database"
-	"app/models"
+	"app/handler"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,14 +16,15 @@ func main() {
 		c.JSON(200, "Hello, World")
 	})
 
-	r.GET("/book/:id", apiGetBook)
-	r.GET("/book", apiGetAllBook)
-	r.GET("/book/:id/Content", apiGetContent)
-	r.GET("/users/:id", apiGetUserdata)
+	r.GET("/book/:id", handler.ApiGetBook)
+	r.GET("/book", handler.ApiGetAllBook)
+	r.GET("/book/:id/Content", handler.ApiGetContent)
 
-	r.POST("/recommend", sendRecommend)
-	r.GET("/my_recommend", getMyRecommend)
-	r.GET("/my_recommended", getMyRecommended)
+	r.GET("/users/:id", handler.ApiGetUserdata)
+
+	r.POST("/recommend", handler.SendRecommend)
+	r.GET("/my_recommend", handler.GetMyRecommend)
+	r.GET("/my_recommended", handler.GetMyRecommended)
 
 	r.Run()
 }
