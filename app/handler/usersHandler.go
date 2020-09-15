@@ -1,14 +1,16 @@
-package main
+package handler
 
 import (
 	"app/database"
 	"app/models"
-	"strconv"
+
 	"encoding/json"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
-func apiGetUserdata(c *gin.Context) {
+func ApiGetUserdata(c *gin.Context) {
 	println("getting userdata")
 	param := c.Param("id")
 	var id int
