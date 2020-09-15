@@ -1,8 +1,11 @@
 package main
 
 import (
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 
+	"app/database"
 	"app/models"
 )
 
@@ -12,4 +15,12 @@ func sendReaction(c *gin.Context) {
 	if err != nil {
 		println(err)
 	}
+}
+
+func getReaction(c *gin.Context) {
+	param := c.Query("id")
+	id, _ := strconv.Atoi()
+	reactions := models.GetReaction(database.GetDB(), id)
+
+	c.JSON(200, reactions)
 }
