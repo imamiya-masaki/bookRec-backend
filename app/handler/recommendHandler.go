@@ -37,3 +37,24 @@ func SendRecommend(c *gin.Context) {
 
 	c.JSON(200, recommend)
 }
+
+// type RecommendInfo struct {
+// 	Username       string
+// 	BookImages     []string
+// 	ReactionImages []string
+// }
+
+// func GetRecommendInfo(c *gin.Context) {
+// 	param := c.Query("sender_id")
+// 	id, _ := strconv.Atoi(param)
+// 	recommends := models.GetMyRecommend(database.GetDB(), id)
+
+// 	var recommend_infos []RecommendInfo
+// 	for i, recommend := range recommends {
+// 		var recommend_info RecommendInfo
+
+// 		///////////////////////////
+// 		// message model　必要やわ
+// 		///////////////////////////
+// 	}
+// }
