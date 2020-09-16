@@ -33,7 +33,7 @@ func main() {
 	r.GET("/message_by_recommend_id", handler.GetMessageByRecommendId)
 	r.POST("/message", handler.SendMessage)
 
-	r.POST("/reaction", handler.SendReaction)
+	r.POST("/reaction", handler.PostReaction)
 	r.GET("/reaction/:id", handler.GetReaction)
 
 	r.POST("/notification", handler.SendNotification)

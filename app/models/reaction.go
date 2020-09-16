@@ -2,13 +2,20 @@ package models
 
 import "gorm.io/gorm"
 
+type Reaction struct {
+	Id         int
+	ReactionId string
+	SenderId   int
+	RecieverId int
+}
+
 type ReactionContent struct {
 	Id           int    `json: "id"`
 	ReactionName string `json: "reaction_name"`
 	Uri          string `json: "uri"`
 }
 
-func (reaction *ReactionContent) SendReaction(db *gorm.DB) {
+func (reaction *ReactionContent) PostReaction(db *gorm.DB) {
 	result := db.Create(&reaction)
 
 	if err := result.Error; err != nil {
