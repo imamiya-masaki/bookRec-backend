@@ -39,6 +39,7 @@ type BookRequest struct {
 	Title       string `json:"title"`
 	Author      string `json:"author"`
 	Price       int    `json:"price"`
+	URI         string `json:"uri"`
 }
 
 func (book *Book) CreateBook(db *gorm.DB) {
@@ -87,7 +88,8 @@ func GetBookContent(db *gorm.DB, id int) []BookContent {
 }
 
 func (req *BookRequest) RegistBook(db *gorm.DB) *gorm.DB {
-	book := Book{BookGroupId: req.BookGroupId, Title: req.Title, Author: req.Author, Price: req.Price}
+	date := time.Now()
+	book := Book{BookGroupId: req.BookGroupId, Title: req.Title, Author: req.Author, Price: req.Price, URI: req.URI, ReleaseDate: date}
 	res := db.Create(&book)
 	return res
 }

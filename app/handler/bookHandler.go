@@ -38,12 +38,11 @@ func ApiGetContent(c *gin.Context) {
 func ApiRegistBook(c *gin.Context) {
 	req := &models.BookRequest{}
 	err := c.BindJSON(req)
-
 	if err != nil {
 		println(err)
 	}
+	println("req", req)
+	req.RegistBook(database.GetDB())
 
-	res := req.RegistBook(database.GetDB())
-
-	c.JSON(200, res)
+	c.JSON(200, req)
 }
