@@ -24,7 +24,7 @@ func PostCoupon(c *gin.Context) {
 func GetCoupon(c *gin.Context) {
 	param := c.Param("id")
 	id, _ := strconv.Atoi(param)
-	coupon := models.GetBook(database.GetDB(), id)
+	coupon := models.GetCoupon(database.GetDB(), id)
 
 	c.JSON(200, coupon)
 }

@@ -42,5 +42,9 @@ func main() {
 
 	r.POST("/buy", handler.ApiBuy)
 
+	r.GET("/coupon/:id", handler.GetCoupon)
+	r.GET("/mycoupon", handler.GetCouponByUser)
+	r.POST("/coupon", handler.PostCoupon)
+
 	r.Run()
 }
