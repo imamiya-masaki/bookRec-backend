@@ -68,15 +68,7 @@ func GetRecommendInfo(c *gin.Context) {
 		var book_image = models.GetBook(database.GetDB(), book_id).URI
 		var reaction_image = models.GetReaction(database.GetDB(), reaction_content_id).Uri
 
-		println("get data from db --------")
-		println(username)
-		println(book_image)
-		println(reaction_image)
-
 		isexist, index := check_exist(recommend_infos, username)
-
-		println("is exist ? -----------")
-		println(isexist)
 
 		if isexist {
 			book_images := recommend_infos[index].BookImages
