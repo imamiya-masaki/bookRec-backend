@@ -1,6 +1,10 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"app/twitter"
+	"gorm.io/gorm"
+	"net/url"
+)
 
 type User struct {
 	Id           int    `json:"id"`
@@ -19,15 +23,14 @@ type RegistUserResponse struct {
 	ReqData RegistUserRequest `json:"req_data"`
 }
 
-type TwitterDmRequest struct {
-	TwitterToken string `json:"twitter_token"`
-	DmMsg        string `json:"dm_msg"`
+type TwitterPostRequest struct {
+	PostMsg string `json:"post_msg"`
 }
 
-type TwitterDmResponse struct {
-	Status  string           `json:"status"`
-	Msg     string           `json:"message"`
-	ReqData TwitterDmRequest `json:"req_data"`
+type TwitterPostResponse struct {
+	Status  string             `json:"status"`
+	Msg     string             `json:"message"`
+	ReqData TwitterPostRequest `json:"req_data"`
 }
 
 func GetUserDataById(db *gorm.DB, id int) User {
@@ -67,9 +70,20 @@ func (req *RegistUserRequest) RegistUser(db *gorm.DB) RegistUserResponse {
 	return res
 }
 
-func (req *TwitterDmRequest) SendTwitterDm(db *gorm.DB) TwitterDmResponse {
+func (req *TwitterPostRequest) PostTwitterTweet() TwitterPostResponse {
+	v := url.Values{}
 
-	res := TwitterDmResponse{"error", "function isnt exist", *req}
+	api := twitter.GetTwitterApi()
+
+	tweet, err := api.PostTweet(req.PostMsg, v)
+
+	res := TwitterPostResponse{"ok", "tweet send...  id:" + tweet.IdStr, *req}
+
+	if err != nil {
+		println(err.Error())
+		res.Status = "error"
+		res.Msg = "twitter tweet error"
+	}
 
 	return res
 }

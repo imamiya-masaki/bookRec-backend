@@ -7,6 +7,7 @@ USERNAME=docker
 USERPASS=docker
 ROOTPASS=root
 ```
+※TwitterのAPIキーを設定する必要あり
 ### コンテナの生成と起動
 ```
 $ docker-compose build

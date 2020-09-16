@@ -32,3 +32,16 @@ func ApiRegistUser(c *gin.Context) {
 
 	c.JSON(200, res)
 }
+
+func ApiSendTwitterTweet(c *gin.Context) {
+	req := &models.TwitterPostRequest{}
+	err := c.BindJSON(req)
+
+	if err != nil {
+		println(err)
+	}
+
+	res := req.PostTwitterTweet()
+
+	c.JSON(200, res)
+}
