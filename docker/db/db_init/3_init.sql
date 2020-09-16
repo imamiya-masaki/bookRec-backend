@@ -66,10 +66,10 @@ CREATE TABLE notifications (
     action_type VARCHAR(64),
     id_value INT,
     created_at TIMESTAMP
-)
+);
 
 CREATE TABLE coupons (
     id INT auto_increment not null primary key,
     user_id INT,
     percent INT
-)
+);
