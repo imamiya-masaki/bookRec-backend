@@ -25,6 +25,7 @@ func main() {
 	r.POST("/recommend", handler.SendRecommend)
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
+	r.GET("/recommend_info", handler.GetRecommendInfo)
 
 	r.GET("/message/:id", handler.GetMessageById)
 	r.GET("/message_by_recommend_id", handler.GetMessageByRecommendId)
@@ -32,6 +33,12 @@ func main() {
 
 	r.POST("/reaction", handler.SendReaction)
 	r.GET("/reaction/:id", handler.GetReaction)
+
+	r.POST("/notification", handler.SendNotification)
+	r.GET("/my_notification/", handler.GetMyNotification)
+	r.GET("/my_notificated/", handler.GetMyNotificated)
+
+	r.POST("/buy", handler.ApiBuy)
 
 	r.Run()
 }

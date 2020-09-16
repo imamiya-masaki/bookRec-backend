@@ -25,13 +25,13 @@ CREATE TABLE booklist (
     book_id INT
 );
 
-CREATE TABLE myBooks (
+CREATE TABLE my_books (
     id INT auto_increment not null primary key,
     user_id INT,
     book_id INT
 );
 
-CREATE TABLE bookGroup (
+CREATE TABLE book_group (
     id INT auto_increment not null primary key,
     bookname VARCHAR(64)
 );
@@ -45,14 +45,24 @@ CREATE TABLE books (
     release_date VARCHAR(128)
 );
 
-CREATE TABLE bookContents (
+CREATE TABLE book_contents (
     id INT auto_increment not null primary key,
     book_id INT,
     book_page INT,
     uri VARCHAR(256)
 );
-CREATE TABLE reactionContent (
+
+CREATE TABLE reaction_contents (
     id INT auto_increment not null primary key,
     reaction_name VARCHAR(64),
     uri VARCHAR(256)
 );
+
+CREATE TABLE notifications (
+    id INT auto_increment not null primary key,
+    sender_id INT,
+    reciever_id INT,
+    action_type VARCHAR(64),
+    id_value INT,
+    created_at TIMESTAMP
+)

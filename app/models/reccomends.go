@@ -3,11 +3,11 @@ package models
 import "gorm.io/gorm"
 
 type Recommend struct {
-	Id                int
-	SenderId          int
-	ReceiverId        int
-	BookId            int
-	ReactionContentId int
+	Id                int `json: "id"`
+	SenderId          int `json: "sender_id"`
+	ReceiverId        int `json: "reciever_id"`
+	BookId            int `json: "book_id"`
+	ReactionContentId int `json: "reaction_content_id"`
 }
 
 func (recommend *Recommend) SendReccomend(db *gorm.DB) {

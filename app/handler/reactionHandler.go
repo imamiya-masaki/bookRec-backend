@@ -10,7 +10,7 @@ import (
 )
 
 func SendReaction(c *gin.Context) {
-	reaction := &models.Reaction{}
+	reaction := &models.ReactionContent{}
 	err := c.BindJSON(reaction)
 	if err != nil {
 		println(err)
