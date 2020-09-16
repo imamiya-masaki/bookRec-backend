@@ -15,7 +15,7 @@ INSERT INTO book_db.booklist (user_id, book_id) VALUES
 (1,1),(1,2),(1,3);
 INSERT INTO book_db.book_contents (book_id, book_page, uri) VALUES
 (1,1,NULL),(1,2,NULL),(1,3,NULL),(1,4,NULL),(1,5,NULL),(1,6,NULL);
-INSERT INTO book_db.reactionContent (reaction_name, uri) VALUES
+INSERT INTO book_db.reaction_content (reaction_name, uri) VALUES
 (NULL,NULL);
 /*
 CREATE TABLE booklist (

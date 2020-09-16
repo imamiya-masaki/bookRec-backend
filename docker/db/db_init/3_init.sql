@@ -51,8 +51,18 @@ CREATE TABLE book_contents (
     book_page INT,
     uri VARCHAR(256)
 );
+
 CREATE TABLE reaction_content (
     id INT auto_increment not null primary key,
     reaction_name VARCHAR(64),
     uri VARCHAR(256)
 );
+
+CREATE TABLE notifications (
+    id INT auto_increment not null primary key,
+    sender_id INT,
+    reciever_id INT,
+    action_type VARCHAR(64),
+    id_value INT,
+    created_at TIMESTAMP
+)
