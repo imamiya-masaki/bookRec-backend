@@ -16,9 +16,8 @@ func (reaction *ReactionContent) SendReaction(db *gorm.DB) {
 	}
 }
 
-func GetReaction(db *gorm.DB, id int) []ReactionContent {
-	var reactions []ReactionContent
-	db.Where(map[string]interface{}{"id": id}).Find(&reactions)
-
-	return reactions
+func GetReaction(db *gorm.DB, id int) ReactionContent {
+	var reaction_content ReactionContent
+	db.First(&reaction_content, id)
+	return reaction_content
 }
