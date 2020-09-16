@@ -42,7 +42,8 @@ CREATE TABLE books (
     title VARCHAR(64),
     author VARCHAR(64),
     price INT,
-    release_date VARCHAR(128),
+    release_date TIMESTAMP,
+    uri VARCHAR(256)
 );
 
 CREATE TABLE book_contents (
