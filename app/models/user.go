@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type User struct {
 	Id           int    `json:"id"`
-	Name         string `json:"username"`
+	Username     string `json:"username"`
 	TwitterToken string `json:"twitter_token"`
 }
 
@@ -54,7 +54,7 @@ func (req *RegistUserRequest) RegistUser(db *gorm.DB) RegistUserResponse {
 
 	res := RegistUserResponse{"ok", "", *req}
 
-	user := User{Name: req.Name, TwitterToken: req.TwitterToken}
+	user := User{Username: req.Name, TwitterToken: req.TwitterToken}
 
 	result := db.Create(&user)
 
