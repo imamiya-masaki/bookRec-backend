@@ -35,3 +35,15 @@ func ApiGetContent(c *gin.Context) {
 	posts := models.GetBookContent(database.GetDB(), intParam)
 	c.JSON(200, posts)
 }
+func ApiRegistBook(c *gin.Context) {
+	req := &models.BookRequest{}
+	err := c.BindJSON(req)
+
+	if err != nil {
+		println(err)
+	}
+
+	res := req.RegistBook(database.GetDB())
+
+	c.JSON(200, res)
+}

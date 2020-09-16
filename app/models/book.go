@@ -34,6 +34,13 @@ type BookResponse struct {
 	Books    []Book `json:"books"`
 }
 
+type BookRequest struct {
+	BookGroupId int    `json:"bookGroupId"`
+	Title       string `json:"title"`
+	Author      string `json:"author"`
+	Price       int    `json:"price"`
+}
+
 func (book *Book) CreateBook(db *gorm.DB) {
 	result := db.Create(&book)
 	if err := result.Error; err != nil {
@@ -78,3 +85,21 @@ func GetBookContent(db *gorm.DB, id int) []BookContent {
 	db.Where(map[string]interface{}{"book_id": id}).Find(&bookContents)
 	return bookContents
 }
+
+func (req *BookRequest) RegistBook(db *gorm.DB) *gorm.DB {
+	book := Book{BookGroupId: req.BookGroupId, Title: req.Title, Author: req.Author, Price: req.Price}
+	res := db.Create(&book)
+	return res
+}
+
+/*
+type Book struct {
+	Id          int    `json:"id"`
+	BookGroupId int    `json:"bookGroupId"`
+	Title       string `json:"title"`
+	Author      string `json:"author"`
+	Price       int    `json:"price"`
+	ReleaseDate int    `json:"releaseDate"`
+}
+
+*/
