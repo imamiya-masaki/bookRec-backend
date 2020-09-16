@@ -41,10 +41,11 @@ func main() {
 	r.GET("/book/:id/Content", handler.ApiGetContent)
 	r.POST("book_regist", handler.ApiRegistBook)
 
+	r.GET("/users/", handler.ApiGetAllUser)
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
 	r.POST("/regist", handler.ApiRegistUser)
-	
+
 	r.POST("/posttweet", handler.ApiSendTwitterTweet)
 
 	r.POST("/recommend", handler.SendRecommend)
