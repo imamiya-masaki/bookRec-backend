@@ -1,14 +1,19 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Book struct {
-	Id          int    `json:"id"`
-	BookGroupId int    `json:"bookGroupId"`
-	Title       string `json:"title"`
-	Author      string `json:"author"`
-	Price       int    `json:"price"`
-	ReleaseDate int    `json:"releaseDate"`
+	Id          int       `json:"id"`
+	BookGroupId int       `json:"bookGroupId"`
+	Title       string    `json:"title"`
+	Author      string    `json:"author"`
+	Price       int       `json:"price"`
+	ReleaseDate time.Time `json:"releaseDate"`
+	URI         string    `json:"uri"`
 }
 
 type BookContent struct {

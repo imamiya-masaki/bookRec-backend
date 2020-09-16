@@ -59,36 +59,16 @@ func GetRecommendInfo(c *gin.Context) {
 	recommends := models.GetMyRecommend(database.GetDB(), id)
 
 	var recommend_infos []RecommendInfo
-	for i, recommend := range recommends {
-		println("ite-----")
-		println(i)
-
+	for _, recommend := range recommends {
 		var reciever_id = recommend.ReceiverId
 		var book_id = recommend.BookId
 		var reaction_content_id = recommend.ReactionContentId
-		println("book id")
-		println(book_id)
-
-		var book = models.GetBookContent(database.GetDB(), book_id)
-		println("book ----------")
-		for _, book_content := range book {
-			println(book_content.Id)
-		}
-		println(book[0].Id)
 
 		var username = models.GetUserDataById(database.GetDB(), reciever_id).Username
-		var book_image = models.GetBookContent(database.GetDB(), book_id)[0].URI
-		var reaction_image = models.GetReaction(database.GetDB(), reaction_content_id)[0].Uri
-
-		println("get data from db --------")
-		println(username)
-		println(book_image)
-		println(reaction_image)
+		var book_image = models.GetBook(database.GetDB(), book_id).URI
+		var reaction_image = models.GetReaction(database.GetDB(), reaction_content_id).Uri
 
 		isexist, index := check_exist(recommend_infos, username)
-
-		println("is exist ? -----------")
-		println(isexist)
 
 		if isexist {
 			book_images := recommend_infos[index].BookImages
