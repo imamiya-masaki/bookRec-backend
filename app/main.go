@@ -4,6 +4,7 @@ import (
 	"app/database"
 	"app/handler"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,6 +13,25 @@ func main() {
 
 	r := gin.Default()
 
+	r.Use(cors.New(cors.Config{
+		AllowMethods: []string{
+			"POST",
+			"GET",
+			"OPTIONS",
+			"PUT",
+			"DELETE",
+		},
+		AllowHeaders: []string{
+			"Access-Control-Allow-Headers",
+			"Origin",
+			"Content-Type",
+			"Content-Length",
+		},
+		AllowOrigins: []string{
+			"*",
+		},
+	}))
+
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, "Hello, World")
 	})
@@ -19,10 +39,13 @@ func main() {
 	r.GET("/book/:id", handler.ApiGetBook)
 	r.GET("/book", handler.ApiGetAllBook)
 	r.GET("/book/:id/Content", handler.ApiGetContent)
+	r.POST("book_regist", handler.ApiRegistBook)
 
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
 	r.POST("/regist", handler.ApiRegistUser)
+	
+	r.POST("/posttweet", handler.ApiSendTwitterTweet)
 
 	r.POST("/recommend", handler.SendRecommend)
 	r.PUT("/recommend", handler.UpdateRecommend)
