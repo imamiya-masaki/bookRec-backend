@@ -33,6 +33,10 @@ func main() {
 	r.POST("/reaction", handler.SendReaction)
 	r.GET("/reaction/:id", handler.GetReaction)
 
+	r.POST("/notification", handler.SendNotification)
+	r.GET("/my_notification/", handler.GetMyNotification)
+	r.GET("/my_notificated/", handler.GetMyNotificated)
+
 	r.POST("/buy", handler.ApiBuy)
 
 	r.Run()
