@@ -2,13 +2,6 @@ package models
 
 import "gorm.io/gorm"
 
-type Reaction struct {
-	Id         int
-	ReactionId string
-	SenderId   int
-	RecieverId int
-}
-
 type ReactionContent struct {
 	Id           int    `json: "id"`
 	ReactionName string `json: "reaction_name"`

@@ -38,6 +38,18 @@ func SendRecommend(c *gin.Context) {
 	c.JSON(200, recommend)
 }
 
+func UpdateRecommend(c *gin.Context) {
+	recommend := &models.Recommend{}
+	err := c.BindJSON(recommend)
+	if err != nil {
+		println(err)
+	}
+
+	recommend.UpdateRecommend(database.GetDB())
+
+	c.JSON(200, recommend)
+}
+
 type RecommendInfo struct {
 	Username       string
 	BookImages     []string

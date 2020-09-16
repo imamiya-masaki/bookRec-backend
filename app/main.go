@@ -25,6 +25,7 @@ func main() {
 	r.POST("/regist", handler.ApiRegistUser)
 
 	r.POST("/recommend", handler.SendRecommend)
+	r.PUT("/recommend", handler.UpdateRecommend)
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
 	r.GET("/recommend_info", handler.GetRecommendInfo)

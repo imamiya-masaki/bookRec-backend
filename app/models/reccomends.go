@@ -18,6 +18,15 @@ func (recommend *Recommend) SendReccomend(db *gorm.DB) {
 	}
 }
 
+func (recommend *Recommend) UpdateRecommend(db *gorm.DB) {
+	// db.Model(&recommend).Update("reaction_content_id", id)
+	result := db.Save(&recommend)
+
+	if err := result.Error; err != nil {
+		println(err)
+	}
+}
+
 func GetMyRecommend(db *gorm.DB, sender_id int) []Recommend {
 	var recommends []Recommend
 	db.Where(map[string]interface{}{"sender_id": sender_id}).Find(&recommends)
