@@ -19,6 +19,7 @@ func main() {
 	r.GET("/book/:id", handler.ApiGetBook)
 	r.GET("/book", handler.ApiGetAllBook)
 	r.GET("/book/:id/Content", handler.ApiGetContent)
+	r.GET("book/regist", handler.ApiRegistBook)
 
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
