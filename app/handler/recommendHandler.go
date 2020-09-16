@@ -66,6 +66,15 @@ func GetRecommendInfo(c *gin.Context) {
 		var reciever_id = recommend.ReceiverId
 		var book_id = recommend.BookId
 		var reaction_content_id = recommend.ReactionContentId
+		println("book id")
+		println(book_id)
+
+		var book = models.GetBookContent(database.GetDB(), book_id)
+		println("book ----------")
+		for _, book_content := range book {
+			println(book_content.Id)
+		}
+		println(book[0].Id)
 
 		var username = models.GetUserDataById(database.GetDB(), reciever_id).Username
 		var book_image = models.GetBookContent(database.GetDB(), book_id)[0].URI
