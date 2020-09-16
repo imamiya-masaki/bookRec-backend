@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bookDetail" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="edb0bd2e-3250-4af0-af13-f03b9f58c78f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/bookDetail.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/bookDetail.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="$USER_HOME$/gocode/go1.14.4" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1hUJ0kivSMf0pZ2R98RIN5tJKCT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="bookRec-backend" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/app/main.go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go ビルド.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1433" height="207" key="GridCell.Tab.0.bottom" timestamp="1600063720938">
+      <screen x="0" y="23" width="1440" height="815" />
+    </state>
+    <state width="1433" height="207" key="GridCell.Tab.0.bottom/-170.-1057.1920.1057/0.23.1440.813@0.23.1440.813" timestamp="1600061817965" />
+    <state width="1433" height="207" key="GridCell.Tab.0.bottom/-170.-1057.1920.1057/0.23.1440.815@0.23.1440.815" timestamp="1600063720938" />
+    <state width="1433" height="207" key="GridCell.Tab.0.center" timestamp="1600063720937">
+      <screen x="0" y="23" width="1440" height="815" />
+    </state>
+    <state width="1433" height="207" key="GridCell.Tab.0.center/-170.-1057.1920.1057/0.23.1440.813@0.23.1440.813" timestamp="1600061817965" />
+    <state width="1433" height="207" key="GridCell.Tab.0.center/-170.-1057.1920.1057/0.23.1440.815@0.23.1440.815" timestamp="1600063720937" />
+    <state width="1433" height="207" key="GridCell.Tab.0.left" timestamp="1600063720936">
+      <screen x="0" y="23" width="1440" height="815" />
+    </state>
+    <state width="1433" height="207" key="GridCell.Tab.0.left/-170.-1057.1920.1057/0.23.1440.813@0.23.1440.813" timestamp="1600061817964" />
+    <state width="1433" height="207" key="GridCell.Tab.0.left/-170.-1057.1920.1057/0.23.1440.815@0.23.1440.815" timestamp="1600063720936" />
+    <state width="1433" height="207" key="GridCell.Tab.0.right" timestamp="1600063720937">
+      <screen x="0" y="23" width="1440" height="815" />
+    </state>
+    <state width="1433" height="207" key="GridCell.Tab.0.right/-170.-1057.1920.1057/0.23.1440.813@0.23.1440.813" timestamp="1600061817965" />
+    <state width="1433" height="207" key="GridCell.Tab.0.right/-170.-1057.1920.1057/0.23.1440.815@0.23.1440.815" timestamp="1600063720937" />
+    <state x="493" y="242" width="653" height="490" key="find.popup" timestamp="1600062253823">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="493" y="242" width="653" height="490" key="find.popup/-170.-1057.1920.1057/0.23.1440.813@0.23.1440.813" timestamp="1600062253823" />
+  </component>
+</project>
