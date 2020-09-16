@@ -39,6 +39,7 @@ func main() {
 	r.GET("/book/:id", handler.ApiGetBook)
 	r.GET("/book", handler.ApiGetAllBook)
 	r.GET("/book/:id/Content", handler.ApiGetContent)
+	r.POST("book_regist", handler.ApiRegistBook)
 
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
@@ -63,6 +64,10 @@ func main() {
 	r.GET("/my_notificated/", handler.GetMyNotificated)
 
 	r.POST("/buy", handler.ApiBuy)
+
+	r.GET("/coupon/:id", handler.GetCoupon)
+	r.GET("/mycoupon", handler.GetCouponByUser)
+	r.POST("/coupon", handler.PostCoupon)
 
 	r.Run()
 }
