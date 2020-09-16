@@ -11,6 +11,7 @@ type Recommend struct {
 }
 
 func (recommend *Recommend) SendReccomend(db *gorm.DB) {
+	recommend.ReactionContentId = -1
 	result := db.Create(&recommend)
 
 	if err := result.Error; err != nil {

@@ -3,6 +3,7 @@ package handler
 import (
 	"app/database"
 	"app/models"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -44,12 +45,61 @@ func getReactionInfo(id int) []ReactionInfo {
 	return reaction_infos
 }
 
-func calcRecommendCount(id int) {
+func calcRecommendCount(id int) int {
+	recommends := models.GetMyRecommend(database.GetDB(), id)
 
+	return len(recommends)
+}
+
+func calcRecommendedCount(id int) int {
+	recommendeds := models.GetMyRecommended(database.GetDB(), id)
+
+	return len(recommendeds)
+}
+
+func calcReactionCount(id int) int {
+	recommends := models.GetMyRecommend(database.GetDB(), id)
+
+	var count int
+	for _, recommend := range recommends {
+		if recommend.ReactionContentId != -1 {
+			count += 1
+		}
+	}
+
+	return count
+}
+
+func calcCouponCount(id int) int {
+	coupons := models.GetCouponByUser(database.GetDB(), id)
+
+	return len(coupons)
+}
+
+func calcBookCount(id int) int {
+	books := models.GetUsersBook(database.GetDB(), id)
+
+	return len(books.Books)
 }
 
 func GetDashBoardInfo(c *gin.Context) {
-	reaction_infos := getReactionInfo(1)
+	param := c.Query("id")
+	id, _ := strconv.Atoi(param)
+	reaction_infos := getReactionInfo(id)
+	recommend_count := calcRecommendCount(id)
+	recommended_count := calcRecommendedCount(id)
+	reaction_count := calcReactionCount((id))
+	coupon_count := calcCouponCount((id))
+	book_count := calcBookCount(id)
 
-	c.JSON(200, reaction_infos)
+	dashboard_info := DashBoardInfo{
+		Reactions:        reaction_infos,
+		RecommendCount:   recommend_count,
+		RecommendedCount: recommended_count,
+		ReactionCount:    reaction_count,
+		CouponCount:      coupon_count,
+		BookCount:        book_count,
+	}
+
+	c.JSON(200, dashboard_info)
 }
