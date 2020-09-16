@@ -17,6 +17,9 @@ INSERT INTO book_db.book_contents (book_id, book_page, uri) VALUES
 (1,1,NULL),(1,2,NULL),(1,3,NULL),(1,4,NULL),(1,5,NULL),(1,6,NULL);
 INSERT INTO book_db.reaction_contents (reaction_name, uri) VALUES
 (NULL,"hogehoge");
+
+INSERT INTO book_db.coupons (user_id, percent) VALUES (1, 10);
+
 /*
 CREATE TABLE booklist (
     id INT auto_increment not null primary key,
