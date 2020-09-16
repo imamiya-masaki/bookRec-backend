@@ -16,10 +16,19 @@ func ApiGetBook(c *gin.Context) {
 	posts := models.GetBook(database.GetDB(), intParam)
 	c.JSON(200, posts)
 }
+
+func ApiGetUsersBook(c *gin.Context) {
+	param := c.Param("id")
+	intParam, _ := strconv.Atoi(param)
+	res := models.GetUsersBook(database.GetDB(), intParam)
+	c.JSON(200, res)
+}
+
 func ApiGetAllBook(c *gin.Context) {
 	posts := models.GetAllBook(database.GetDB())
 	c.JSON(200, posts)
 }
+
 func ApiGetContent(c *gin.Context) {
 	param := c.Param("id")
 	intParam, _ := strconv.Atoi(param)
