@@ -1,6 +1,11 @@
 package handler
 
-import "app/database"
+import (
+	"app/database"
+	"app/models"
+
+	"github.com/gin-gonic/gin"
+)
 
 type ReactionInfo struct {
 	Username      string
@@ -16,7 +21,7 @@ type DashBoardInfo struct {
 	BookCount        int
 }
 
-func getReactionInfo(id) {
+func getReactionInfo(id int) []ReactionInfo {
 	// id : 自分のID
 	recommends := models.GetMyRecommend(database.GetDB(), id)
 
@@ -25,11 +30,26 @@ func getReactionInfo(id) {
 		user_id := recommend.ReceiverId
 		reaction_id := recommend.ReactionContentId
 
-		username := models.GetUserDataById(database.GetDB, user_id).Username
+		username := models.GetUserDataById(database.GetDB(), user_id).Username
+		reaction_image := models.GetReaction(database.GetDB(), reaction_id).ReactionName
 
 		reaction_info := ReactionInfo{
-			Username: username, 
-			TwitterToken: req.TwitterToken
+			Username:      username,
+			ReactionImage: reaction_image,
 		}
+
+		reaction_infos = append(reaction_infos, reaction_info)
 	}
+
+	return reaction_infos
+}
+
+func calcRecommendCount(id int) {
+
+}
+
+func GetDashBoardInfo(c *gin.Context) {
+	reaction_infos := getReactionInfo(1)
+
+	c.JSON(200, reaction_infos)
 }

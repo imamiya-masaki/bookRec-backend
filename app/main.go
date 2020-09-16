@@ -47,5 +47,7 @@ func main() {
 	r.GET("/mycoupon", handler.GetCouponByUser)
 	r.POST("/coupon", handler.PostCoupon)
 
+	r.GET("/dashboard_info", handler.GetDashBoardInfo)
+
 	r.Run()
 }
