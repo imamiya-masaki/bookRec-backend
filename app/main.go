@@ -29,5 +29,7 @@ func main() {
 	r.POST("/send_reaction", handler.SendReaction)
 	r.GET("/get_reaction", handler.GetReaction)
 
+	r.POST("/buy", handler.ApiBuy)
+
 	r.Run()
 }
