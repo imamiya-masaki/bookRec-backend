@@ -20,7 +20,7 @@ type BuyResponse struct {
 
 func (d *BuyData) BuyBooks(db *gorm.DB) BuyResponse {
 	if d.UserId <= 0 || len(d.BookIds) == 0 {
-		r := BuyResponse{"error", "invalid request", BuyData{}}
+		r := BuyResponse{"error", "invalid request", *d}
 		return r
 	}
 
