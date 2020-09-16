@@ -19,3 +19,16 @@ func ApiGetUserdata(c *gin.Context) {
 	enc, _ := json.Marshal(data)
 	c.JSON(200, string(enc))
 }
+
+func ApiRegistUser(c *gin.Context) {
+	req := &models.RegistUserRequest{}
+	err := c.BindJSON(req)
+
+	if err != nil {
+		println(err)
+	}
+
+	res := req.RegistUser(database.GetDB())
+
+	c.JSON(200, res)
+}
