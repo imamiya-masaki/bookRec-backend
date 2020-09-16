@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type User struct {
 	Id           int    `json:"id"`
-	Name         string `json:"name"`
+	Name         string `json:"username"`
 	TwitterToken string `json:"twitter_token"`
 }
 

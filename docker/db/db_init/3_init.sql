@@ -52,7 +52,7 @@ CREATE TABLE book_contents (
     uri VARCHAR(256)
 );
 
-CREATE TABLE reaction_content (
+CREATE TABLE reaction_contents (
     id INT auto_increment not null primary key,
     reaction_name VARCHAR(64),
     uri VARCHAR(256)

@@ -2,13 +2,13 @@ package models
 
 import "gorm.io/gorm"
 
-type Reaction struct {
-	Id           int
-	ReactionName string
-	Uri          string
+type ReactionContent struct {
+	Id           int    `json: "id"`
+	ReactionName string `json: "reaction_name"`
+	Uri          string `json: "uri"`
 }
 
-func (reaction *Reaction) SendReaction(db *gorm.DB) {
+func (reaction *ReactionContent) SendReaction(db *gorm.DB) {
 	result := db.Create(&reaction)
 
 	if err := result.Error; err != nil {
@@ -16,8 +16,8 @@ func (reaction *Reaction) SendReaction(db *gorm.DB) {
 	}
 }
 
-func GetReaction(db *gorm.DB, id int) []Recommend {
-	var reactions []Recommend
+func GetReaction(db *gorm.DB, id int) []ReactionContent {
+	var reactions []ReactionContent
 	db.Where(map[string]interface{}{"id": id}).Find(&reactions)
 
 	return reactions

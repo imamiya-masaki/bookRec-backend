@@ -11,7 +11,7 @@ type Notification struct {
 	SenderId   int       `json:"sender_id"`
 	RecieverId int       `json:"reciever_id"`
 	ActionType string    `json:"action_type"`
-	IdValue    string    `json:"id_value"`
+	IdValue    int       `json:"id_value"`
 	CreatedAt  time.Time `json: "created_at"`
 }
 

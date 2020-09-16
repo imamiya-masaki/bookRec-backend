@@ -64,12 +64,12 @@ func GetUsersBook(db *gorm.DB, userId int) BookResponse {
 
 func (book *Book) Content(db *gorm.DB) []BookContent {
 	var bookContents []BookContent
-	db.Where(map[string]interface{}{"bookId": book.Id}).Find(&bookContents)
+	db.Where(map[string]interface{}{"book_id": book.Id}).Find(&bookContents)
 	return bookContents
 }
 
 func GetBookContent(db *gorm.DB, id int) []BookContent {
 	var bookContents []BookContent
-	db.Where(map[string]interface{}{"bookId": id}).Find(&bookContents)
+	db.Where(map[string]interface{}{"book_id": id}).Find(&bookContents)
 	return bookContents
 }
