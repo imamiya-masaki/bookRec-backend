@@ -21,6 +21,7 @@ func main() {
 	r.GET("/book/:id/Content", handler.ApiGetContent)
 
 	r.GET("/users/:id", handler.ApiGetUserdata)
+	r.POST("/regist", handler.ApiRegistUser)
 
 	r.POST("/recommend", handler.SendRecommend)
 	r.GET("/my_recommend", handler.GetMyRecommend)
