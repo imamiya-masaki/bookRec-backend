@@ -8,9 +8,13 @@ import (
 )
 
 func ApiGetAllUser(c *gin.Context) {
-	data := models.GetAllUser(database.GetDB())
-	c.JSON(200, data)
+	users, rows := models.GetAllUser(database.GetDB())
+	c.JSON(200, gin.H{
+            "count": rows,
+            "users": users,
+	})
 }
+
 func ApiGetUserdata(c *gin.Context) {
 	println("getting userdata")
 	param := c.Param("id")
