@@ -87,11 +87,25 @@ func GetBookContent(db *gorm.DB, id int) []BookContent {
 	return bookContents
 }
 
-func (req *BookRequest) RegistBook(db *gorm.DB) *gorm.DB {
+func (req *BookRequest) RegistBook(db *gorm.DB) {
 	date := time.Now()
 	book := Book{BookGroupId: req.BookGroupId, Title: req.Title, Author: req.Author, Price: req.Price, URI: req.URI, ReleaseDate: date}
-	res := db.Create(&book)
-	return res
+	db.Create(&book)
+}
+
+func GetPagesByPageCount(db *gorm.DB, count int) []BookContent {
+	var bookContents []BookContent
+	db.Where(map[string]interface{}{"book_id": 1}).Find(&bookContents)
+	getCount := count
+	if getCount > len(bookContents) {
+		getCount = len(bookContents)
+	}
+	return bookContents[0:count]
+}
+func GetPages(db *gorm.DB) []BookContent {
+	var bookContents []BookContent
+	db.Where(map[string]interface{}{"book_id": 1}).Find(&bookContents)
+	return bookContents
 }
 
 /*

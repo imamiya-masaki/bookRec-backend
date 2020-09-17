@@ -41,6 +41,9 @@ func main() {
 	r.GET("/book/:id/Content", handler.ApiGetContent)
 	r.POST("book_regist", handler.ApiRegistBook)
 
+	r.GET("/bookPage/:id", handler.ApiGetPages)
+	r.GET("/bookPage/:id/:page_count", handler.ApiGetPagesByPageCount)
+
 	r.GET("/users", handler.ApiGetAllUser)
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
