@@ -7,11 +7,6 @@ type BuyData struct {
 	BookIds []int `json:"book_id"`
 }
 
-type MyBook struct {
-	UserId int
-	BookId int
-}
-
 type BuyResponse struct {
 	Status string  `json:"status"`
 	Msg    string  `json:"message"`
