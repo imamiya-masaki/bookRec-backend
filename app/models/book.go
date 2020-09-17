@@ -69,8 +69,8 @@ func GetUsersBook(db *gorm.DB, userId int) BookResponse {
 	println(result.RowsAffected)
 	res.Quantity = result.RowsAffected
 
-	for _, v := range mybookids {
-		db.Where(&Book{Id: v.BookId}).Find(&res.Books)
+	for i, v := range mybookids {
+		db.Where(&Book{Id: v.BookId}).Find(&res.Books[i])
 	}
 	return res
 }
