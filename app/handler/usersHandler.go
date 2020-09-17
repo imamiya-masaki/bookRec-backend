@@ -16,8 +16,7 @@ func ApiGetUserdata(c *gin.Context) {
 	var id int
 	id, _ = strconv.Atoi(param)
 	data := models.GetUserDataById(database.GetDB(), id)
-	enc, _ := json.Marshal(data)
-	c.JSON(200, string(enc))
+	c.JSON(200, data)
 }
 
 func ApiRegistUser(c *gin.Context) {
