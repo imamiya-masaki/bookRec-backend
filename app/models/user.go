@@ -55,7 +55,7 @@ func GetUserDataById(db *gorm.DB, id int) User {
 	return user
 }
 
-func GetUserDataByTwitterToken(db *gorm.DB, twitterToken string) (User int64){
+func GetUserDataByTwitterToken(db *gorm.DB, twitterToken string) (User, int64) {
 	var user User
 	result := db.Where("twitter_token = ?", twitterToken).Find(&user)
 
