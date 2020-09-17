@@ -46,3 +46,11 @@ func ApiRegistBook(c *gin.Context) {
 
 	c.JSON(200, req)
 }
+
+func GetBooksByTwitter(c *gin.Context) {
+	param := c.Param("twitter_id")
+	user, _ := models.GetUserDataByTwitterToken(database.GetDB(), param)
+	res := models.GetUsersBook(database.GetDB(), user.Id)
+
+	c.JSON(200, res)
+}

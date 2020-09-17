@@ -39,6 +39,7 @@ func main() {
 	r.GET("/book/:id", handler.ApiGetBook)
 	r.GET("/book", handler.ApiGetAllBook)
 	r.GET("/book/:id/Content", handler.ApiGetContent)
+	r.GET("/book_by_twitter_id/:twitter_id", handler.GetBooksByTwitter)
 	r.POST("book_regist", handler.ApiRegistBook)
 
 	r.GET("/users", handler.ApiGetAllUser)
