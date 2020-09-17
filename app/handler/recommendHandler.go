@@ -41,6 +41,26 @@ func SendRecommend(c *gin.Context) {
 		println(err)
 	}
 
+	for _, bookid := range req.BookIds {
+
+		recommend := &models.Recommend{
+			SenderId:          req.SenderId,
+			ReceiverId:        req.ReceiverId,
+			BookId:            bookid,
+			ReactionContentId: req.ReactionContentId,
+		}
+		// err = c.BindJSON(recommend)
+		// println(recommend.SenderId)
+		// if err != nil {
+		// 	println("error")
+		// 	println(err.Error())
+		// } else {
+		// 	println("success")
+		// }
+
+		recommend.SendReccomend(database.GetDB())
+	}
+
 	if req.ReceiverId == 0 {
 		userRequest := &models.RegistUserRequest{
 			Name:         "unknown",
@@ -52,38 +72,23 @@ func SendRecommend(c *gin.Context) {
 		} else {
 			println("error, regist user")
 		}
+		url := "http://example.com/"
+		msg := "あっと " + req.TwitterToken + "さん\nbookRecにて本をおすすめされました！\nメッセージ：" + req.Message + "\n" + url
 
-		// twitter_post_req := &models.TwitterPostRequest{
-		// 	PostMsg: req.Message,
-		// }
-		// twitter_post_res := twitter_post_req.PostTwitterTweet()
+		twitter_post_req := &models.TwitterPostRequest{
+			PostMsg: msg,
+		}
 
-		// // c.JSON(200, twitter_post_res)
-		// if twitter_post_res.Status == "ok" {
-		// 	println("success tweet")
-		// } else {
-		// 	println("error, cannot tweet")
-		// }
+		twitter_post_res := twitter_post_req.PostTwitterTweet()
+
+		if twitter_post_res.Status == "ok" {
+			println("success tweet")
+		} else {
+			println("error, cannot tweet")
+		}
 	}
 
-	recommend := &models.Recommend{
-		SenderId:          req.SenderId,
-		ReceiverId:        req.ReceiverId,
-		BookId:            req.BookId,
-		ReactionContentId: req.ReactionContentId,
-	}
-	// err = c.BindJSON(recommend)
-	// println(recommend.SenderId)
-	// if err != nil {
-	// 	println("error")
-	// 	println(err.Error())
-	// } else {
-	// 	println("success")
-	// }
-
-	recommend.SendReccomend(database.GetDB())
-
-	c.JSON(200, recommend)
+	c.JSON(200, gin.H{"status": "response..."})
 }
 
 func UpdateRecommend(c *gin.Context) {
