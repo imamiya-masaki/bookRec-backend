@@ -16,7 +16,18 @@ func ApiGetBook(c *gin.Context) {
 	posts := models.GetBook(database.GetDB(), intParam)
 	c.JSON(200, posts)
 }
-
+func ApiGetPagesByPageCount(c *gin.Context) {
+	// bookPage/:id/:page_count
+	param := c.Param("page_count")
+	intParam, _ := strconv.Atoi(param)
+	posts := models.GetPagesByPageCount(database.GetDB(), intParam)
+	c.JSON(200, posts)
+}
+func ApiGetPages(c *gin.Context) {
+	// bookPage/:id
+	posts := models.GetPages(database.GetDB())
+	c.JSON(200, posts)
+}
 func ApiGetUsersBook(c *gin.Context) {
 	param := c.Param("id")
 	intParam, _ := strconv.Atoi(param)
