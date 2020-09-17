@@ -28,7 +28,7 @@ func GetMyRecommended(c *gin.Context) {
 type SendRecommendReqest struct {
 	SenderId          int    `json: "sender_id"`
 	ReceiverId        int    `json: "reciever_id"`
-	BookId            int    `json: "book_id"`
+	BookIds           []int  `json: "book_id"`
 	ReactionContentId int    `json: "reaction_content_id"`
 	TwitterToken      string `json: "twitter_token"`
 	Message           string `json: "message"`
