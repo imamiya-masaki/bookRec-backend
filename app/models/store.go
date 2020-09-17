@@ -7,11 +7,6 @@ type BuyData struct {
 	BookIds []int `json:"book_id"`
 }
 
-type MyBook struct {
-	UserId int
-	BookId int
-}
-
 type BuyResponse struct {
 	Status string  `json:"status"`
 	Msg    string  `json:"message"`
@@ -26,7 +21,7 @@ func (d *BuyData) BuyBooks(db *gorm.DB) BuyResponse {
 
 	r := BuyResponse{"ok", "", *d}
 	for _, v := range d.BookIds {
-		mybook := MyBook{d.UserId, v}
+		mybook := MyBook{UserId: d.UserId, BookId: v}
 		
 		var count int64
 		db.Where(mybook).Count(&count)

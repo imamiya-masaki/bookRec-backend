@@ -23,7 +23,7 @@ type BookContent struct {
 	URI    string `json:"uri"`
 }
 
-type MyBooks struct {
+type MyBook struct {
 	Id     int
 	UserId int
 	BookId int
@@ -62,16 +62,16 @@ func GetAllBook(db *gorm.DB) []Book {
 }
 
 func GetUsersBook(db *gorm.DB, userId int) BookResponse {
-	var mybookids []MyBooks
-	res := BookResponse{0, []Book{}}
+	var mybooks []MyBook
 
-	result := db.Where("user_id = ?", userId).Find(&mybookids)
-	println(result.RowsAffected)
-	res.Quantity = result.RowsAffected
+	result := db.Where("user_id = ?", userId).Find(&mybooks)
+	
+	res := BookResponse{result.RowsAffected, []Book{}}
 
-	for i, v := range mybookids {
-		db.Where(&Book{Id: v.BookId}).Find(&res.Books[i])
+	for _, mybook := range mybooks {
+		res.Books = append(res.Books, GetBook(db, mybook.BookId))
 	}
+	
 	return res
 }
 
