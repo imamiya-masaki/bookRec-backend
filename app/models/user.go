@@ -56,7 +56,6 @@ func GetUserDataById(db *gorm.DB, id int) User {
 }
 
 func (req *RegistUserRequest) RegistUser(db *gorm.DB) RegistUserResponse {
-
 	if req.Name == "" || req.TwitterToken == "" {
 		r := RegistUserResponse{"error", "field error", *req}
 		return r

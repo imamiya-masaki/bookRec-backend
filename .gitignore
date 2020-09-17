@@ -3,3 +3,5 @@
 .DS_Store
 
 ./docker/db/db_data
+
+book-rec-key.pem
