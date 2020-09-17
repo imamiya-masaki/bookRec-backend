@@ -26,8 +26,18 @@ func (d *BuyData) BuyBooks(db *gorm.DB) BuyResponse {
 
 	r := BuyResponse{"ok", "", *d}
 	for _, v := range d.BookIds {
-		m := MyBook{d.UserId, v}
-		result := db.Create(&m)
+		mybook := MyBook{d.UserId, v}
+		
+		var count int64
+		db.Where(mybook).Count(&count)
+		if count > 0 {
+			msg := "cant buy book " + string(v) + "(Already have)"
+			println(msg)
+			r.Msg += msg
+			continue;
+		}
+		
+		result := db.Create(&mybook)
 		if err := result.Error; err != nil {
 			println(err)
 			r.Status = "error"
