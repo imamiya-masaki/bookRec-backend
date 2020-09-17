@@ -57,6 +57,7 @@ func main() {
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
 	r.GET("/recommend_info", handler.GetRecommendInfo)
+	r.POST("/unanonymize", handler.ApiUnanonymizeByReccomendId)
 
 	r.GET("/message/:id", handler.GetMessageById)
 	r.GET("/message_by_recommend_id", handler.GetMessageByRecommendId)

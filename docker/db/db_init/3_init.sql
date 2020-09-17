@@ -9,7 +9,8 @@ CREATE TABLE recommends (
     sender_id INT,
     receiver_id INT,
     book_id INT,
-    reaction_content_id INT
+    reaction_content_id INT,
+    is_unanonymized INT default 0
 );
 
 CREATE TABLE messages (
