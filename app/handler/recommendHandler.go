@@ -26,7 +26,6 @@ func GetMyRecommended(c *gin.Context) {
 }
 
 type SendRecommendReqest struct {
-	Id                int    `json: "id"`
 	SenderId          int    `json: "sender_id"`
 	ReceiverId        int    `json: "reciever_id"`
 	BookId            int    `json: "book_id"`
@@ -54,24 +53,33 @@ func SendRecommend(c *gin.Context) {
 			println("error, regist user")
 		}
 
-		twitter_post_req := &models.TwitterPostRequest{
-			PostMsg: req.Message,
-		}
-		twitter_post_res := twitter_post_req.PostTwitterTweet()
+		// twitter_post_req := &models.TwitterPostRequest{
+		// 	PostMsg: req.Message,
+		// }
+		// twitter_post_res := twitter_post_req.PostTwitterTweet()
 
-		// c.JSON(200, twitter_post_res)
-		if twitter_post_res.Status == "ok" {
-			println("success tweet")
-		} else {
-			println("error, cannot tweet")
-		}
+		// // c.JSON(200, twitter_post_res)
+		// if twitter_post_res.Status == "ok" {
+		// 	println("success tweet")
+		// } else {
+		// 	println("error, cannot tweet")
+		// }
 	}
 
-	recommend := &models.Recommend{}
-	err = c.BindJSON(recommend)
-	if err != nil {
-		println(err)
+	recommend := &models.Recommend{
+		SenderId:          req.SenderId,
+		ReceiverId:        req.ReceiverId,
+		BookId:            req.BookId,
+		ReactionContentId: req.ReactionContentId,
 	}
+	// err = c.BindJSON(recommend)
+	// println(recommend.SenderId)
+	// if err != nil {
+	// 	println("error")
+	// 	println(err.Error())
+	// } else {
+	// 	println("success")
+	// }
 
 	recommend.SendReccomend(database.GetDB())
 
