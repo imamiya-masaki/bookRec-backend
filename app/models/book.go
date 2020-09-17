@@ -23,7 +23,7 @@ type BookContent struct {
 	URI    string `json:"uri"`
 }
 
-type MyBooks struct {
+type MyBook struct {
 	Id     int
 	UserId int
 	BookId int
