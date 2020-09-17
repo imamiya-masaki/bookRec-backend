@@ -25,12 +25,47 @@ func GetMyRecommended(c *gin.Context) {
 	c.JSON(200, recommends)
 }
 
+type struct SendRecommendReqest {
+	Id                int `json: "id"`
+	SenderId          int `json: "sender_id"`
+	ReceiverId        int `json: "reciever_id"`
+	BookId            int `json: "book_id"`
+	ReactionContentId int `json: "reaction_content_id"`
+	TwitterToken string `json: "twitter_token"`
+	Message string `json: "message"`
+}
+
 func SendRecommend(c *gin.Context) {
-	recommend := &models.Recommend{}
-	err := c.BindJSON(recommend)
-	// err := c.Bind(recommend)
+	req := &SendRecommendReqest{}
+	err := c.BindJSON(req)
 	if err != nil {
 		println(err)
+	}
+
+	if req.ReceiverId == 0 {
+		userRequest = &models.RegistUserRequest {
+			Name: "unknown"
+			TwitterToken: req.TwitterToken
+		}
+		res = userRequest.RegistUser(database.GetDB())
+		if res.Status == "ok" {
+			println("success regist user")
+		} else {
+			println("error, regist user")
+		}
+
+		twitter_post_req := &models.TwitterPostRequest {
+
+		}
+		res := twitter_post_req.PostTwitterTweet()
+		
+		c.JSON(200, res)
+	} else {
+		recommend := &models.Recommend{}
+		err := c.BindJSON(recommend)
+		if err != nil {
+			println(err)
+		}
 	}
 
 	recommend.SendReccomend(database.GetDB())
