@@ -99,14 +99,14 @@ func UpdateRecommend(c *gin.Context) {
 }
 
 type RecommendInfo struct {
-	Username       string
-	BookImages     []string
-	ReactionImages []string
+	User      models.User
+	Books     []models.Book
+	Reactions []models.ReactionContent
 }
 
 func check_exist(arr []RecommendInfo, username string) (bool, int) {
 	for index, v := range arr {
-		if v.Username == username {
+		if v.User.Username == username {
 			return true, index
 		}
 	}
@@ -124,25 +124,63 @@ func GetRecommendInfo(c *gin.Context) {
 		var book_id = recommend.BookId
 		var reaction_content_id = recommend.ReactionContentId
 
-		var username = models.GetUserDataById(database.GetDB(), reciever_id).Username
-		var book_image = models.GetBook(database.GetDB(), book_id).URI
-		var reaction_image = models.GetReaction(database.GetDB(), reaction_content_id).Uri
+		var user = models.GetUserDataById(database.GetDB(), reciever_id)
+		var book = models.GetBook(database.GetDB(), book_id)
+		var reaction = models.GetReaction(database.GetDB(), reaction_content_id)
 
-		isexist, index := check_exist(recommend_infos, username)
+		isexist, index := check_exist(recommend_infos, user.Username)
 
 		if isexist {
-			book_images := recommend_infos[index].BookImages
-			book_images = append(book_images, book_image)
-			recommend_infos[index].BookImages = book_images
+			books := recommend_infos[index].Books
+			books = append(books, book)
+			recommend_infos[index].Books = books
 
-			reaction_images := recommend_infos[index].ReactionImages
-			reaction_images = append(reaction_images, reaction_image)
-			recommend_infos[index].ReactionImages = reaction_images
+			reactions := recommend_infos[index].Reactions
+			reactions = append(reactions, reaction)
+			recommend_infos[index].Reactions = reactions
 		} else {
 			var recommend_info RecommendInfo
-			recommend_info.Username = username
-			recommend_info.BookImages = []string{book_image}
-			recommend_info.ReactionImages = []string{reaction_image}
+			recommend_info.User = user
+			recommend_info.Books = []models.Book{book}
+			recommend_info.Reactions = []models.ReactionContent{reaction}
+
+			recommend_infos = append(recommend_infos, recommend_info)
+		}
+	}
+
+	c.JSON(200, recommend_infos)
+}
+
+func GetRecommendedInfo(c *gin.Context) {
+	param := c.Query("reciever_id")
+	id, _ := strconv.Atoi(param)
+	recommends := models.GetMyRecommend(database.GetDB(), id)
+
+	var recommend_infos []RecommendInfo
+	for _, recommend := range recommends {
+		var sender_id = recommend.ReceiverId
+		var book_id = recommend.BookId
+		var reaction_content_id = recommend.ReactionContentId
+
+		var user = models.GetUserDataById(database.GetDB(), sender_id)
+		var book = models.GetBook(database.GetDB(), book_id)
+		var reaction = models.GetReaction(database.GetDB(), reaction_content_id)
+
+		isexist, index := check_exist(recommend_infos, user.Username)
+
+		if isexist {
+			books := recommend_infos[index].Books
+			books = append(books, book)
+			recommend_infos[index].Books = books
+
+			reactions := recommend_infos[index].Reactions
+			reactions = append(reactions, reaction)
+			recommend_infos[index].Reactions = reactions
+		} else {
+			var recommend_info RecommendInfo
+			recommend_info.User = user
+			recommend_info.Books = []models.Book{book}
+			recommend_info.Reactions = []models.ReactionContent{reaction}
 
 			recommend_infos = append(recommend_infos, recommend_info)
 		}
