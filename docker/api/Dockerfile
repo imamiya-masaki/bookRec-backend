@@ -11,6 +11,7 @@ RUN go get github.com/pilu/fresh && \
     go get -u github.com/gin-gonic/gin && \
     go get github.com/gin-contrib/cors && \
     go get -u gorm.io/gorm && \
-    go get -u gorm.io/driver/mysql
+    go get -u gorm.io/driver/mysql && \
+    go get github.com/ChimeraCoder/anaconda
 
 # CMD [ "go", "run", "main.go" ]

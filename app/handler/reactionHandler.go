@@ -9,14 +9,14 @@ import (
 	"app/models"
 )
 
-func SendReaction(c *gin.Context) {
+func PostReaction(c *gin.Context) {
 	reaction := &models.ReactionContent{}
 	err := c.BindJSON(reaction)
 	if err != nil {
 		println(err)
 	}
 
-	reaction.SendReaction(database.GetDB())
+	reaction.PostReaction(database.GetDB())
 
 	c.JSON(200, reaction)
 }
