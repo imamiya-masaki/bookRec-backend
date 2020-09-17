@@ -69,7 +69,7 @@ func GetUsersBook(db *gorm.DB, userId int) BookResponse {
 	res := BookResponse{result.RowsAffected, []Book{}}
 
 	for _, mybook := range mybooks {
-		res.Books = append(res.Books, GetBook(mybook.BookId))
+		res.Books = append(res.Books, GetBook(db, mybook.BookId))
 	}
 	
 	return res
