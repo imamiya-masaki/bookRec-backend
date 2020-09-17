@@ -34,6 +34,12 @@ type TwitterPostResponse struct {
 	ReqData TwitterPostRequest `json:"req_data"`
 }
 
+func GetAllUsers(db *gorm.DB) ([]User, int64) {
+	var users []User
+	result := db.Find(&users)
+	return users, result.RowsAffected
+}
+
 func GetUserDataById(db *gorm.DB, id int) User {
 	var user User
 	result := db.Where("id = ?", id).Find(&user)
