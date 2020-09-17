@@ -2,8 +2,9 @@ package models
 
 import (
 	"app/twitter"
-	"gorm.io/gorm"
 	"net/url"
+
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -31,6 +32,12 @@ type TwitterPostResponse struct {
 	Status  string             `json:"status"`
 	Msg     string             `json:"message"`
 	ReqData TwitterPostRequest `json:"req_data"`
+}
+
+func GetAllUser(db *gorm.DB) []User {
+	var user []User
+	db.Find(&user)
+	return user
 }
 
 func GetUserDataById(db *gorm.DB, id int) User {
