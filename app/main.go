@@ -49,6 +49,7 @@ func main() {
 	r.POST("/posttweet", handler.ApiSendTwitterTweet)
 
 	r.POST("/recommend", handler.SendRecommend)
+	r.PUT("/recommend", handler.UpdateRecommend)
 	r.GET("/my_recommend", handler.GetMyRecommend)
 	r.GET("/my_recommended", handler.GetMyRecommended)
 	r.GET("/recommend_info", handler.GetRecommendInfo)
@@ -57,7 +58,7 @@ func main() {
 	r.GET("/message_by_recommend_id", handler.GetMessageByRecommendId)
 	r.POST("/message", handler.SendMessage)
 
-	r.POST("/reaction", handler.SendReaction)
+	r.POST("/reaction", handler.PostReaction)
 	r.GET("/reaction/:id", handler.GetReaction)
 
 	r.POST("/notification", handler.SendNotification)
@@ -69,6 +70,8 @@ func main() {
 	r.GET("/couponAll", handler.GetCoupon)
 	r.GET("/mycoupon/:user_id", handler.GetCouponByUser)
 	r.POST("/coupon", handler.PostCoupon)
+
+	r.GET("/dashboard_info", handler.GetDashBoardInfo)
 
 	r.Run()
 }

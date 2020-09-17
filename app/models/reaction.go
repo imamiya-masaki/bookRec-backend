@@ -8,7 +8,7 @@ type ReactionContent struct {
 	Uri          string `json: "uri"`
 }
 
-func (reaction *ReactionContent) SendReaction(db *gorm.DB) {
+func (reaction *ReactionContent) PostReaction(db *gorm.DB) {
 	result := db.Create(&reaction)
 
 	if err := result.Error; err != nil {
