@@ -15,17 +15,14 @@ func PostCoupon(c *gin.Context) {
 	if err != nil {
 		println(err)
 	}
-
+	println(coupon)
 	coupon.PostCoupon(database.GetDB())
 
 	c.JSON(200, coupon)
 }
 
 func GetCoupon(c *gin.Context) {
-	param := c.Param("id")
-	id, _ := strconv.Atoi(param)
-	coupon := models.GetCoupon(database.GetDB(), id)
-
+	coupon := models.GetCoupon(database.GetDB())
 	c.JSON(200, coupon)
 }
 
