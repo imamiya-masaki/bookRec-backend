@@ -4,14 +4,15 @@ import (
 	"app/database"
 	"app/models"
 	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
 func ApiGetAllUser(c *gin.Context) {
-	users, rows := models.GetAllUser(database.GetDB())
+	users, rows := models.GetAllUsers(database.GetDB())
 	c.JSON(200, gin.H{
-            "count": rows,
-            "users": users,
+		"count": rows,
+		"users": users,
 	})
 }
 

@@ -25,14 +25,14 @@ func GetMyRecommended(c *gin.Context) {
 	c.JSON(200, recommends)
 }
 
-type struct SendRecommendReqest {
-	Id                int `json: "id"`
-	SenderId          int `json: "sender_id"`
-	ReceiverId        int `json: "reciever_id"`
-	BookId            int `json: "book_id"`
-	ReactionContentId int `json: "reaction_content_id"`
-	TwitterToken string `json: "twitter_token"`
-	Message string `json: "message"`
+type SendRecommendReqest struct {
+	Id                int    `json: "id"`
+	SenderId          int    `json: "sender_id"`
+	ReceiverId        int    `json: "reciever_id"`
+	BookId            int    `json: "book_id"`
+	ReactionContentId int    `json: "reaction_content_id"`
+	TwitterToken      string `json: "twitter_token"`
+	Message           string `json: "message"`
 }
 
 func SendRecommend(c *gin.Context) {
@@ -43,29 +43,34 @@ func SendRecommend(c *gin.Context) {
 	}
 
 	if req.ReceiverId == 0 {
-		userRequest = &models.RegistUserRequest {
-			Name: "unknown"
-			TwitterToken: req.TwitterToken
+		userRequest := &models.RegistUserRequest{
+			Name:         "unknown",
+			TwitterToken: req.TwitterToken,
 		}
-		res = userRequest.RegistUser(database.GetDB())
-		if res.Status == "ok" {
+		regist_user_res := userRequest.RegistUser(database.GetDB())
+		if regist_user_res.Status == "ok" {
 			println("success regist user")
 		} else {
 			println("error, regist user")
 		}
 
-		twitter_post_req := &models.TwitterPostRequest {
+		twitter_post_req := &models.TwitterPostRequest{
+			PostMsg: req.Message,
+		}
+		twitter_post_res := twitter_post_req.PostTwitterTweet()
 
+		// c.JSON(200, twitter_post_res)
+		if twitter_post_res.Status == "ok" {
+			println("success tweet")
+		} else {
+			println("error, cannot tweet")
 		}
-		res := twitter_post_req.PostTwitterTweet()
-		
-		c.JSON(200, res)
-	} else {
-		recommend := &models.Recommend{}
-		err := c.BindJSON(recommend)
-		if err != nil {
-			println(err)
-		}
+	}
+
+	recommend := &models.Recommend{}
+	err = c.BindJSON(recommend)
+	if err != nil {
+		println(err)
 	}
 
 	recommend.SendReccomend(database.GetDB())
