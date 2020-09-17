@@ -41,3 +41,9 @@ func GetMyRecommended(db *gorm.DB, receiver_id int) []Recommend {
 
 	return recommends
 }
+
+func (recommend *Recommend) Unanonymize(db *gorm.DB) bool {
+	result := db.Model(&Recommend{}).Where("id = ?", recommend.Id).Update("is_unanonymized", "1")
+
+	return (result.RowsAffected == 1)
+}

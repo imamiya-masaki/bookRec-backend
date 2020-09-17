@@ -188,3 +188,26 @@ func GetRecommendedInfo(c *gin.Context) {
 
 	c.JSON(200, recommend_infos)
 }
+
+func ApiUnanonymizeByReccomendId(c *gin.Context) {
+	p := &models.Recommend{}
+	err := c.BindJSON(p)
+	if err != nil {
+		println(err)
+	}
+
+	if res := p.Unanonymize(database.GetDB()); res {
+		c.JSON(200, gin.H{
+			"status":  "ok",
+			"message": "Unanonymized ReccomendId:" + string(p.Id),
+			"req_id":  p.Id,
+		})
+	} else {
+		c.JSON(200, gin.H{
+			"status":  "error",
+			"message": "Unanonymizing Failed. ReccomendId:" + string(p.Id),
+			"req_id":  p.Id,
+		})
+	}
+
+}
