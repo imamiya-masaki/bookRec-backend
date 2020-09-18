@@ -50,3 +50,10 @@ func ApiSendTwitterTweet(c *gin.Context) {
 
 	c.JSON(200, res)
 }
+
+func GetUserDataByTwitter(c *gin.Context) {
+	param := c.Param("twitter_id")
+	user, _ := models.GetUserDataByTwitterToken(database.GetDB(), param)
+
+	c.JSON(200, user)
+}

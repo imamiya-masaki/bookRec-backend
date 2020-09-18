@@ -49,6 +49,7 @@ func main() {
 	r.GET("/users/:id", handler.ApiGetUserdata)
 	r.GET("/users/:id/library", handler.ApiGetUsersBook)
 	r.POST("/regist", handler.ApiRegistUser)
+	r.GET("/user_by_twitter/:twitter_id", handler.GetUserDataByTwitter)
 
 	r.POST("/posttweet", handler.ApiSendTwitterTweet)
 
