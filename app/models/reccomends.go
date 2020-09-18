@@ -8,6 +8,7 @@ type Recommend struct {
 	ReceiverId        int `json: "reciever_id"`
 	BookId            int `json: "book_id"`
 	ReactionContentId int `json: "reaction_content_id"`
+	IsUnanonymized    int `json: "is_unanonymized"`
 }
 
 func (recommend *Recommend) SendReccomend(db *gorm.DB) {
