@@ -21,6 +21,11 @@ func PostReaction(c *gin.Context) {
 	c.JSON(200, reaction)
 }
 
+func GetAllReactionContents(c *gin.Context) {
+	reaction_contents := models.GetAllReactionContents(database.GetDB())
+	c.JSON(200, reaction_contents)
+}
+
 func GetReaction(c *gin.Context) {
 	param := c.Param("id")
 	id, _ := strconv.Atoi(param)

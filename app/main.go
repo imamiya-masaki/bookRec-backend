@@ -66,6 +66,7 @@ func main() {
 	r.POST("/message", handler.SendMessage)
 
 	r.POST("/reaction", handler.PostReaction)
+	r.GET("/reaction", handler.GetAllReactionContents)
 	r.GET("/reaction/:id", handler.GetReaction)
 
 	r.POST("/notification", handler.SendNotification)

@@ -16,6 +16,14 @@ func (reaction *ReactionContent) PostReaction(db *gorm.DB) {
 	}
 }
 
+func GetAllReactionContents(db *gorm.DB) []ReactionContent {
+	var reaction_contents []ReactionContent
+	result := db.Find(&reaction_contents)
+	println(result.RowsAffected)
+
+	return reaction_contents
+}
+
 func GetReaction(db *gorm.DB, id int) ReactionContent {
 	var reaction_content ReactionContent
 	db.First(&reaction_content, id)

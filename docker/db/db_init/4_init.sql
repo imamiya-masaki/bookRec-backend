@@ -16,7 +16,5 @@ INSERT INTO book_db.my_books (user_id, book_id) VALUES
 INSERT INTO book_db.booklist (user_id, book_id) VALUES
 (1,1),(1,2),(1,3);
 INSERT INTO book_db.reaction_contents (reaction_name, uri) VALUES
-(NULL,"hogehoge");
-
+("自己啓発", "https://res.cloudinary.com/teamb/image/upload/v1600394098/%E8%87%AA%E5%B7%B1%E5%95%93%E7%99%BA_yb7yeb.png");
 INSERT INTO book_db.coupons (user_id, percent) VALUES (1, 10);
-
