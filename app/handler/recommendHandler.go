@@ -41,12 +41,14 @@ func SendRecommend(c *gin.Context) {
 		println(err)
 	}
 
+	var new_reciever_id int
 	if req.ReceiverId == 0 {
 		userRequest := &models.RegistUserRequest{
 			Name:         "unknown",
 			TwitterToken: req.TwitterToken,
 		}
 		regist_user_res := userRequest.RegistUser(database.GetDB())
+		new_reciever_id = regist_user_res.User.Id
 		if regist_user_res.Status == "ok" {
 			println("success regist user")
 		} else {
@@ -69,10 +71,16 @@ func SendRecommend(c *gin.Context) {
 	}
 
 	for _, bookid := range req.BookIds {
+		var reciever_id int
+		if req.ReceiverId == 0 {
+			reciever_id = new_reciever_id
+		} else {
+			reciever_id = req.ReceiverId
+		}
 
 		recommend := &models.Recommend{
 			SenderId:          req.SenderId,
-			ReceiverId:        req.ReceiverId,
+			ReceiverId:        reciever_id,
 			BookId:            bookid,
 			ReactionContentId: req.ReactionContentId,
 		}
