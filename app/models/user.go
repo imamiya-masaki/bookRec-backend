@@ -22,6 +22,7 @@ type RegistUserResponse struct {
 	Status  string            `json:"status"`
 	Msg     string            `json:"message"`
 	ReqData RegistUserRequest `json:"req_data"`
+	User    User              `json:"user"`
 }
 
 type TwitterPostRequest struct {
@@ -32,7 +33,6 @@ type TwitterPostResponse struct {
 	Status  string             `json:"status"`
 	Msg     string             `json:"message"`
 	ReqData TwitterPostRequest `json:"req_data"`
-	User    User               `json:"user"`
 }
 
 func GetAllUsers(db *gorm.DB) ([]User, int64) {
@@ -64,14 +64,14 @@ func GetUserDataByTwitterToken(db *gorm.DB, twitterToken string) (User, int64) {
 }
 
 func (req *RegistUserRequest) RegistUser(db *gorm.DB) RegistUserResponse {
+	user := User{Username: req.Name, TwitterToken: req.TwitterToken}
+
 	if req.Name == "" || req.TwitterToken == "" {
-		r := RegistUserResponse{"error", "field error", *req}
+		r := RegistUserResponse{"error", "field error", *req, user}
 		return r
 	}
 
-	res := RegistUserResponse{"ok", "", *req}
-
-	user := User{Username: req.Name, TwitterToken: req.TwitterToken}
+	res := RegistUserResponse{"ok", "", *req, user}
 
 	result := db.Create(&user)
 
