@@ -84,6 +84,12 @@ func SendRecommend(c *gin.Context) {
 			BookId:            bookid,
 			ReactionContentId: req.ReactionContentId,
 		}
+
+		mybook := &models.MyBook{
+			UserId: reciever_id,
+			BookId: bookid,
+		}
+
 		// err = c.BindJSON(recommend)
 		// println(recommend.SenderId)
 		// if err != nil {
@@ -94,6 +100,7 @@ func SendRecommend(c *gin.Context) {
 		// }
 
 		recommend.SendReccomend(database.GetDB())
+		mybook.CreateMyBook(database.GetDB())
 	}
 
 	c.JSON(200, gin.H{"status": "response..."})

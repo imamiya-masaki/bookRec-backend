@@ -49,6 +49,13 @@ func (book *Book) CreateBook(db *gorm.DB) {
 	}
 }
 
+func (book *MyBook) CreateMyBook(db *gorm.DB) {
+	result := db.Create(&book)
+	if err := result.Error; err != nil {
+		println(err)
+	}
+}
+
 func GetBook(db *gorm.DB, id int) Book {
 	var book Book
 	db.First(&book, id)
@@ -65,13 +72,13 @@ func GetUsersBook(db *gorm.DB, userId int) BookResponse {
 	var mybooks []MyBook
 
 	result := db.Where("user_id = ?", userId).Find(&mybooks)
-	
+
 	res := BookResponse{result.RowsAffected, []Book{}}
 
 	for _, mybook := range mybooks {
 		res.Books = append(res.Books, GetBook(db, mybook.BookId))
 	}
-	
+
 	return res
 }
 
