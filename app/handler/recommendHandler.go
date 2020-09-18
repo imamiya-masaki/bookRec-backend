@@ -41,6 +41,33 @@ func SendRecommend(c *gin.Context) {
 		println(err)
 	}
 
+	if req.ReceiverId == 0 {
+		userRequest := &models.RegistUserRequest{
+			Name:         "unknown",
+			TwitterToken: req.TwitterToken,
+		}
+		regist_user_res := userRequest.RegistUser(database.GetDB())
+		if regist_user_res.Status == "ok" {
+			println("success regist user")
+		} else {
+			println("error, regist user")
+		}
+		url := "http://bookrec-litemode.s3-website-ap-northeast-1.amazonaws.com/dist/" + "?=%22" + req.TwitterToken + "%22"
+		msg := "@" + req.TwitterToken + "さん\nbookRecにて本をおすすめされました！\nメッセージ：" + req.Message + "\n" + url
+
+		twitter_post_req := &models.TwitterPostRequest{
+			PostMsg: msg,
+		}
+
+		twitter_post_res := twitter_post_req.PostTwitterTweet()
+
+		if twitter_post_res.Status == "ok" {
+			println("success tweet")
+		} else {
+			println("error, cannot tweet")
+		}
+	}
+
 	for _, bookid := range req.BookIds {
 
 		recommend := &models.Recommend{
@@ -59,33 +86,6 @@ func SendRecommend(c *gin.Context) {
 		// }
 
 		recommend.SendReccomend(database.GetDB())
-	}
-
-	if req.ReceiverId == 0 {
-		userRequest := &models.RegistUserRequest{
-			Name:         "unknown",
-			TwitterToken: req.TwitterToken,
-		}
-		regist_user_res := userRequest.RegistUser(database.GetDB())
-		if regist_user_res.Status == "ok" {
-			println("success regist user")
-		} else {
-			println("error, regist user")
-		}
-		url := "http://example.com/"
-		msg := "あっと " + req.TwitterToken + "さん\nbookRecにて本をおすすめされました！\nメッセージ：" + req.Message + "\n" + url
-
-		twitter_post_req := &models.TwitterPostRequest{
-			PostMsg: msg,
-		}
-
-		twitter_post_res := twitter_post_req.PostTwitterTweet()
-
-		if twitter_post_res.Status == "ok" {
-			println("success tweet")
-		} else {
-			println("error, cannot tweet")
-		}
 	}
 
 	c.JSON(200, gin.H{"status": "response..."})
